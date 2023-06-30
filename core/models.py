@@ -13,8 +13,28 @@ class Usuario(models.Model):
 
     def __str__(self):
         return self.nombre + ' ' + self.apellido
+    
 
 
-class Mensaje(models.Model):
-    contenido = models.TextField()
+class Perfilt(models.Model):
+    nombre_user = models.OneToOneField(Usuario, on_delete=models.CASCADE)
+    apellido_user = models.CharField(max_length=100)
+    edad_user = models.PositiveIntegerField()
+    foto_user = models.ImageField(upload_to='fotos/')
+    descripcion_user = models.TextField()
+
+
+
+class Match(models.Model):
+    nombre_user_ = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='matches')
+    matched_user = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='matched_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+    liked = models.BooleanField(default=False)
+    disliked = models.BooleanField(default=False)
+
+
+class Chat(models.Model):
+    remitente = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='enviado')
+    receptor = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='resivido')
+    mensaje = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)

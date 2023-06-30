@@ -9,31 +9,22 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </head>
 <body>
-{%load_static%}
-    <header>
-      <nav>
-        <ul>
-          <h3>Golden Years</h3>
-          <li><a href="match.html">match</a></li>
-          <li><a href="perfil.html">Perfil</a></li>
-          <li><a href="chat.html">Mensajes</a></li>
-        </ul>
-      </nav>
-    </header>
+    {%load_static%}
+    {% extends 'base.html' %}
 
-    
-    <div id="chat-container">
-        {% for mensaje in mensajes %}
-            <div class="mensaje">
-                <span class="fecha">{{ mensaje.fecha }}</span>
-                <span class="contenido">{{ mensaje.contenido }}</span>
-            </div>
-        {% endfor %}
-    </div>
-    <form method="post" action="{% url 'enviar_mensaje' %}">
-        {% csrf_token %}
-        <input type="text" name="contenido" required>
-        <button type="submit">Enviar</button>
-    </form>
+{% block content %}
+  <h1>Tu perfil</h1>
+  <p>Nombre: {{ user_profile.user.nombre }}</p>
+  
+
+  <h2>Usuarios que te han gustado</h2>
+  <ul>
+    {% for liked_user in liked_users %}
+      <li>{{ liked_user.matched_user.nombre }} <a href="{% url 'chat' chat_id=liked_user.id %}">Chat</a></li>
+    {% empty %}
+      <li>Aun no te gusta nadie?</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
 </body>
 </html>

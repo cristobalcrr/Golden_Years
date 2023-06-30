@@ -1,11 +1,15 @@
 from django.urls import path
-from core import views
+from .views import login, registro, dashboard, perfil, chat, enviar_mensaje, perfilt, like_user, dislike_user, chatp
 
 urlpatterns = [
-    path('', views.login_view, name='login'),
-    path('registro/', views.registro, name='registro'),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('perfil/', views.perfil_view, name='perfil'),
-    path('chat/', views.chat, name='chat'),
-    path('enviar/', views.enviar_mensaje, name='enviar_mensaje'),
+    path('', login, name='login'),
+    path('registro', registro, name='registro'),
+    path('dashboard', dashboard, name='dashboard'),
+    path('perfil', perfil, name='perfil'),
+    path('chat', chat, name='chat'),
+    path('enviar', enviar_mensaje, name='enviar_mensaje'),
+    path('perfilt', perfilt, name='perfilt'),
+    path('like/<int:matched_user_id>/', like_user, name='like_user'),
+    path('dislike/<int:matched_user_id>/', dislike_user, name='dislike_user'),
+    path('chat/<int:chat_id>/', chat, name='chat'),
 ]

@@ -9,8 +9,41 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Perfil de usuario</h1>
-    
-    <p>Nombre de usuario: {{ perfil_usuario.usuario.nombre }}</p>
+{%load_static%}
+  <header>
+    <nav>
+      <ul>
+        <h3>Golden Years</h3>
+        <li><a href="match.html">match</a></li>
+        <li><a href="perfil.html">Perfil</a></li>
+        <li><a href="chat.html">Mensajes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  
+  {% extends 'base.html' %}
+
+  {% block content %}
+    <div class="perfil-container">
+      <img src="{{ user_profile.foto.url }}" alt="foto_perfil" class="foto_perfil">
+      <div class="perfil-field">
+        <label for="nombre">Nombre:</label>
+        <span>{{ Usuario.nombre }}</span>
+      </div>
+      <div class="perfil-field">
+        <label for="apellido">Apellido:</label>
+        <span>{{ Usuario.apellido }}</span>
+      </div>
+      <div class="perfil-field">
+        <label for="edad">Edad:</label>
+        <span>{{ Usuario.edad }}</span>
+      </div>
+      <div class="perfil-field">
+        <label for="description">Descripción:</label>
+        <span>{{ Usuario.descripcion }}</span>
+      </div>
+    </div>
+  {% endblock %}
 </body>
 </html>
