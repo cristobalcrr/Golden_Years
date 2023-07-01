@@ -80,8 +80,8 @@ DATABASES = {
 #       'ENGINE': 'django.db.backends.sqlite3',
 #       'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '10.16.49.44:1521/xe',
-        'USER': 'c##prueba',
+        'NAME': '127.0.0.1:1521/xe',
+        'USER': 'c#prueba',
         'PASSWORD': 'prueba',
         'TEST': {
             'USER': 'default_test',
@@ -128,9 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static'),
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

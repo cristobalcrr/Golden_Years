@@ -26,7 +26,7 @@ class Perfilt(models.Model):
 
 
 class Match(models.Model):
-    nombre_user_ = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='matches')
+    nombre_user1 = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='matches')
     matched_user = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='matched_by')
     created_at = models.DateTimeField(auto_now_add=True)
     liked = models.BooleanField(default=False)
@@ -35,6 +35,6 @@ class Match(models.Model):
 
 class Chat(models.Model):
     remitente = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='enviado')
-    receptor = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='resivido')
+    receptor = models.ForeignKey(Perfilt, on_delete=models.CASCADE, related_name='recibido')
     mensaje = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)

@@ -54,7 +54,7 @@ def like_user(request, matched_user_id):
 
 def dislike_user(request, matched_user_id):
     matched_user = matched_user.objects.get(id=matched_user_id)
-    Match.objects.create(matched_user=request.user, matched_user=matched_user, disliked=True)
+    Match.objects.create(matched_user=request.user, disliked=True)
     return redirect('perfil')
 
 def chat(request, chat_id):
