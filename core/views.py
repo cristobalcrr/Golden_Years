@@ -2,18 +2,17 @@ from django.shortcuts import render, redirect
 from core.forms import RegistroForm
 from .models import Usuario, Perfilt, Match, Chat
 
-def login(request):
+def logIn(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
         contraseña = request.POST.get('contraseña')
         
-        # Lógica de validación del usuario y contraseña
         if nombre == 'nombre' and contraseña == 'contraseña':
             return redirect('perfil')
         else:
-            return render(request, 'login.html', {'error': 'Credenciales inválidas.'})
+            return render(request, 'logIn.html', {'error': 'Credenciales inválidas.'})
     
-    return render(request, 'login.html')
+    return render(request, 'logIn.html')
 
 
 def registro(request):
